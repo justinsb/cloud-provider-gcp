@@ -131,7 +131,12 @@ func run(ctx context.Context) error {
 
 func addAndPushTag(ctx context.Context, tag Tag, opt TagOptions) error {
 	klog.Infof("adding tag %+v", tag)
-	if _, err := runGit(ctx, "tag", tag.Tag, tag.SHA); err != nil {
+	args := []string{"tag"}
+	// Create an annotated tag
+	args = append(args, "-a", "-m", "Tag "+tag.Tag)
+	args = append(args, tag.Tag, tag.SHA)
+
+	if _, err := runGit(ctx, args...); err != nil {
 		return err
 	}
 
