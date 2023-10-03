@@ -19,4 +19,4 @@ set -x
 
 source $(git rev-parse --show-toplevel)/tools/common
 
-go run ./tools/autotag --tags=.tags --push=false --missing-git-tags=add --extra-git-tags=error --v=2
+go run ./tools/autotag --tags=.tags --push=true --missing-git-tags=add --extra-git-tags=error --v=1
